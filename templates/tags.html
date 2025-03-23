@@ -6,9 +6,9 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Manage Tags</h2>
+                <h2>Gerir tags</h2>
                 <button id="toggleTagForm" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Add New Tag
+                    <i class="fas fa-plus me-2"></i>Adicionar nova etiqueta
                 </button>
             </div>
         </div>
@@ -16,15 +16,15 @@
     
     <!-- Add Tag Form (Hidden by default) -->
     <div id="tagFormContainer" class="expense-form mb-4" style="display: none;">
-        <h4 class="mb-3">Create New Tag</h4>
+        <h4 class="mb-3">Criar nova etiqueta</h4>
         <form action="{{ url_for('add_tag') }}" method="POST">
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="name" class="form-label">Tag Name</label>
+                    <label for="name" class="form-label">Nome da etiqueta</label>
                     <input type="text" class="form-control bg-dark text-light" id="name" name="name" required>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="color" class="form-label">Tag Color</label>
+                    <label for="color" class="form-label">Cor da etiqueta</label>
                     <div class="input-group">
                         <input type="color" class="form-control form-control-color bg-dark" id="color" name="color" value="#6c757d">
                         <input type="text" class="form-control bg-dark text-light" id="colorHex" value="#6c757d" readonly>
@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" onclick="toggleTagForm()">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create Tag</button>
+                <button type="button" class="btn btn-secondary me-2" onclick="toggleTagForm()">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Criar Tag</button>
             </div>
         </form>
     </div>
@@ -55,17 +55,17 @@
                 </div>
                 <div class="card-body">
                     <p class="text-muted">
-                        <small>Created: {{ tag.created_at.strftime('%Y-%m-%d') }}</small><br>
-                        <small>Color: {{ tag.color }}</small>
+                        <small>Criado: {{ tag.created_at.strftime('%Y-%m-%d') }}</small><br>
+                        <small>Cor: {{ tag.color }}</small>
                     </p>
-                    <p>Used in {{ tag.expenses|length }} expenses</p>
+                    <p>Usado em {{ tag.expenses|length }} expenses</p>
                 </div>
             </div>
         </div>
         {% else %}
         <div class="col-12">
             <div class="alert alert-info">
-                You haven't created any tags yet. Create one to categorize your expenses!
+                Ainda não criou nenhuma tag. Crie uma para categorizar as suas despesas!
             </div>
         </div>
         {% endfor %}
