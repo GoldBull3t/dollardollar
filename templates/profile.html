@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-md-12">
-            <h2>My Profile</h2>
+            <h2>Meu perfil</h2>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-header text-center">
-                    <h5 class="mb-0">User Information</h5>
+                    <h5 class="mb-0">Informações do utilizador</h5>
                 </div>
                 <div class="card-body">
                     <div class="text-center mb-4">
@@ -26,18 +26,18 @@
                     </div>
                     
                     <div class="mb-3">
-                        <label class="form-label text-muted">Account Created</label>
+                        <label class="form-label text-muted">Conta criada</label>
                         <p>{{ account_created }}</p>
                     </div>
                     
                     <div class="mb-3">
                         <label class="form-label text-muted">Role</label>
-                        <p>{% if current_user.is_admin %}<span class="badge bg-warning">Administrator</span>{% else %}<span class="badge bg-secondary">User</span>{% endif %}</p>
+                        <p>{% if current_user.is_admin %}<span class="badge bg-warning">Administrador</span>{% else %}<span class="badge bg-secondary">Utilizador</span>{% endif %}</p>
                     </div>
                     
                     <div class="d-grid">
                         <a href="{{ url_for('logout') }}" class="btn btn-outline-danger">
-                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            <i class="fas fa-sign-out-alt me-2"></i>Terminar sessão
                         </a>
                     </div>
                 </div>
@@ -49,19 +49,19 @@
             <!-- Change Color Card -->
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="mb-0">My Color</h5>
+                    <h5 class="mb-0">Minha cor</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ url_for('update_color') }}" method="POST">
                         <div class="mb-3">
-                            <label for="user_color" class="form-label">Personal Color</label>
+                            <label for="user_color" class="form-label">Cor pessoal</label>
                             <div class="input-group">
                                 <input type="color" class="form-control form-control-color bg-dark" id="user_color" name="user_color" value="{{ user_color }}">
                                 <input type="text" class="form-control bg-dark text-light" id="colorHex" value="{{ user_color }}" readonly>
                                 <button type="submit" class="btn btn-primary">Save Color</button>
                             </div>
                             <div class="form-text text-muted mt-2">
-                                This color will be used to identify you in splits and group activities.
+                                Esta cor será utilizada para o identificar em actividades de grupo.
                             </div>
                         </div>
                     </form>
@@ -72,25 +72,25 @@
             {% if not (current_user.oidc_id and oidc_enabled) %}
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="mb-0">Change Password</h5>
+                    <h5 class="mb-0">Alterar a palavra-passe</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ url_for('change_password') }}" method="POST">
                         <div class="mb-3">
-                            <label for="current_password" class="form-label">Current Password</label>
+                            <label for="current_password" class="form-label">Palavra-passe atual</label>
                             <input type="password" class="form-control bg-dark text-light" id="current_password" name="current_password" required>
                         </div>
                         <div class="mb-3">
-                            <label for="new_password" class="form-label">New Password</label>
+                            <label for="new_password" class="form-label">Nova palavra-passe</label>
                             <input type="password" class="form-control bg-dark text-light" id="new_password" name="new_password" required>
                         </div>
                         <div class="mb-3">
-                            <label for="confirm_password" class="form-label">Confirm New Password</label>
+                            <label for="confirm_password" class="form-label">Confirmar a nova palavra-passe</label>
                             <input type="password" class="form-control bg-dark text-light" id="confirm_password" name="confirm_password" required>
                             <div id="password-match-feedback" class="form-text" style="display: none;"></div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary" id="password-submit-btn">Change Password</button>
+                            <button type="submit" class="btn btn-primary" id="password-submit-btn">Alterar a palavra-passe</button>
                         </div>
                     </form>
                 </div>
@@ -98,21 +98,21 @@
             {% elif current_user.oidc_id and oidc_enabled %}
             <div class="card mb-4">
                 <div class="card-header">
-                    <h5 class="mb-0">Authentication Information</h5>
+                    <h5 class="mb-0">Informações de autenticação</h5>
                 </div>
                 <div class="card-body">
                     <div class="alert alert-info">
                         <i class="fas fa-info-circle me-2"></i>
-                        Your account uses SSO authentication. To change your password, please update your credentials on the identify provider end.
+                         A sua conta utiliza a autenticação SSO. Para alterar a sua palavra-passe, actualize as suas credenciais no fornecedor de identificação.
                     </div>
                     {% if current_user.oidc_provider %}
                     <p class="text-muted mt-3">
-                        <strong>Identity Provider:</strong> {{ current_user.oidc_provider }}
+                        <strong>Fornecedor de identidade:</strong> {{ current_user.oidc_provider }}
                     </p>
                     {% endif %}
                     {% if current_user.last_login %}
                     <p class="text-muted">
-                        <strong>Last Login:</strong> {{ current_user.last_login.strftime('%Y-%m-%d %H:%M:%S') }}
+                        <strong>Último acesso:</strong> {{ current_user.last_login.strftime('%Y-%m-%d %H:%M:%S') }}
                     </p>
                     {% endif %}
                 </div>
@@ -121,12 +121,12 @@
             <!-- Timezone Preferences Card -->
 <div class="card mt-4">
     <div class="card-header">
-        <h5 class="mb-0">Timezone Preferences</h5>
+        <h5 class="mb-0">Preferências de fuso horário</h5>
     </div>
     <div class="card-body">
         <form action="{{ url_for('update_timezone') }}" method="POST">
             <div class="mb-3">
-                <label for="timezone" class="form-label">Select Your Timezone</label>
+                <label for="timezone" class="form-label">Selecione o seu fuso horário</label>
                 <select class="form-select bg-dark text-light" name="timezone" id="timezone" required>
                     {% set current_timezone = current_user.timezone or 'UTC' %}
                     {% set timezone_groups = {
@@ -175,11 +175,11 @@
                     {% endfor %}
                 </select>
                 <div class="form-text text-muted mt-2">
-                    Your local timezone helps us display dates and times accurately for you.
+                    O seu fuso horário local ajuda-nos a apresentar datas e horas com precisão.
                 </div>
             </div>
             <div class="d-grid">
-                <button type="submit" class="btn btn-primary">Save Timezone</button>
+                <button type="submit" class="btn btn-primary">Guardar fuso horário</button>
             </div>
         </form>
     </div>
@@ -187,12 +187,12 @@
             <!-- Default Currency Card -->
             <div class="card">
                 <div class="card-header">
-                    <h5 class="mb-0">Default Currency</h5>
+                    <h5 class="mb-0">Moeda padrão</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ url_for('set_default_currency') }}" method="POST">
                         <div class="mb-3">
-                            <label for="default_currency" class="form-label">Select Your Default Currency</label>
+                            <label for="default_currency" class="form-label">Selecionar a sua moeda padrão</label>
                             <select class="form-select bg-dark text-light" name="default_currency" id="default_currency" required>
                                 {% for currency in currencies %}
                                     <option value="{{ currency.code }}" {% if current_user.default_currency_code == currency.code %}selected{% endif %}>
@@ -201,11 +201,11 @@
                                 {% endfor %}
                             </select>
                             <div class="form-text text-muted mt-2">
-                                This currency will be pre-selected when creating new expenses.
+                                Esta moeda será pré-selecionada ao criar novas despesas.
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Save Default Currency</button>
+                            <button type="submit" class="btn btn-primary">Guardar moeda padrão</button>
                         </div>
                     </form>
                 </div>
@@ -213,7 +213,7 @@
             <!-- Email Notification Preferences Card -->
             <div class="card mt-4">
                 <div class="card-header">
-                    <h5 class="mb-0">Email Notifications</h5>
+                    <h5 class="mb-0">Notificações por e-mail</h5>
                 </div>
                 <div class="card-body">
                     <form action="{{ url_for('update_notification_preferences') }}" method="POST">
@@ -221,14 +221,14 @@
                             <input type="checkbox" class="form-check-input" id="monthly_report_enabled" name="monthly_report_enabled" 
                                 {% if current_user.monthly_report_enabled %}checked{% endif %}>
                             <label class="form-check-label" for="monthly_report_enabled">
-                                Send monthly expense reports
+                                Enviar relatórios mensais de despesas
                             </label>
                             <div class="form-text text-muted mt-1">
-                                Receive an email at the beginning of each month with a summary of your expenses, budget status, and balances.
+                                Receba um e-mail no início de cada mês com um resumo das suas despesas, estado do orçamento e saldos.
                             </div>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Save Notification Preferences</button>
+                            <button type="submit" class="btn btn-primary">Guardar preferências de notificação</button>
                         </div>
                     </form>
                 </div>
