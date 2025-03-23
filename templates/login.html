@@ -12,13 +12,13 @@
                 {% if oidc_enabled %}
                 <div class="d-grid mb-4">
                     <a href="{{ url_for('login_oidc') }}" class="btn btn-lg btn-primary">
-                        <i class="fas fa-sign-in-alt me-2"></i>Login with {{ config.get('OIDC_PROVIDER_NAME', 'SSO') }}
+                        <i class="fas fa-sign-in-alt me-2"></i>Aceder com {{ config.get('OIDC_PROVIDER_NAME', 'SSO') }}
                     </a>
                 </div>
                 
                 {% if not local_login_disabled %}
                 <div class="text-center mb-4">
-                    <span class="oidc-divider-text">OR</span>
+                    <span class="oidc-divider-text">OU</span>
                 </div>
                 {% endif %}
                 {% endif %}
@@ -26,14 +26,14 @@
                 {% if not local_login_disabled %}
                 <form method="POST">
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
+                        <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email" required>
                     </div>
                     <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Palavra-passe</label>
                         <input type="password" class="form-control" id="password" name="password" required>
                         <div class="mt-1 text-end">
-                            <a href="{{ url_for('reset_password_request') }}" class="text-warning small">Forgot Password?</a>
+                            <a href="{{ url_for('reset_password_request') }}" class="text-warning small">Esqueceu-se da palavra-passe?</a>
                         </div>
                     </div>
                     <div class="d-grid">
@@ -42,15 +42,15 @@
                 </form>
                 {% else %}
                 <div class="alert alert-info text-center mt-3">
-                    Local login has been disabled. Please use {{ config.get('OIDC_PROVIDER_NAME', 'SSO') }}.
+                    O início de sessão local foi desativado. Por favor, use {{ config.get('OIDC_PROVIDER_NAME', 'SSO') }}.
                 </div>
                 {% endif %}
                 
                 <p class="text-center mt-3">
                     {% if not signups_disabled %}
-                        Don't have an account? <a href="{{ url_for('signup') }}" class="text-warning">Sign up</a>
+                        Não tem uma conta? <a href="{{ url_for('signup') }}" class="text-warning">Registar</a>
                     {% else %}
-                        New registrations are currently disabled.
+                        Os novos registos estão atualmente desactivados.
                     {% endif %}
                 </p>
             </div>
