@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-md-12">
-            <h2>Settle Up</h2>
+            <h2>Estabelecer-se</h2>
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-danger text-white">
-                    <h5 class="mb-0"><i class="fas fa-arrow-circle-right me-2"></i>You Owe</h5>
+                    <h5 class="mb-0"><i class="fas fa-arrow-circle-right me-2"></i>Você deve</h5>
                 </div>
                 <div class="card-body">
                     {% if you_owe %}
@@ -28,14 +28,14 @@
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-danger me-2">{{ base_currency.symbol }}{{ "%.2f"|format(balance.amount) }}</span>
                                     <button class="btn btn-success btn-sm" onclick="prepareSettlement('{{ balance.id }}', '{{ balance.name }}', {{ balance.amount }}, true)">
-                                        <i class="fas fa-money-bill-wave me-1"></i>Pay
+                                        <i class="fas fa-money-bill-wave me-1"></i>Pagar
                                     </button>
                                 </div>
                             </div>
                             {% endfor %}
                         </div>
                     {% else %}
-                        <p class="text-muted">You don't owe anyone money</p>
+                        <p class="text-muted">Não deve dinheiro a ninguém</p>
                     {% endif %}
                 </div>
             </div>
@@ -44,7 +44,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header bg-success text-white">
-                    <h5 class="mb-0"><i class="fas fa-arrow-circle-left me-2"></i>You Are Owed</h5>
+                    <h5 class="mb-0"><i class="fas fa-arrow-circle-left me-2"></i>Devem lhe</h5>
                 </div>
                 <div class="card-body">
                     {% if you_are_owed %}
@@ -58,14 +58,14 @@
                                 <div class="d-flex align-items-center">
                                     <span class="badge bg-success me-2">{{ base_currency.symbol }}{{ "%.2f"|format(balance.amount) }}</span>
                                     <button class="btn btn-secondary btn-sm" onclick="prepareSettlement('{{ balance.id }}', '{{ balance.name }}', {{ balance.amount }}, false)">
-                                        <i class="fas fa-check me-1"></i>Record
+                                        <i class="fas fa-check me-1"></i>Registo
                                     </button>
                                 </div>
                             </div>
                             {% endfor %}
                         </div>
                     {% else %}
-                        <p class="text-muted">Nobody owes you money</p>
+                        <p class="text-muted">Ninguém lhe deve dinheiro</p>
                     {% endif %}
                 </div>
             </div>
@@ -75,24 +75,24 @@
     <!-- Record Settlement Form -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5 class="mb-0">Record a Settlement</h5>
+            <h5 class="mb-0">Registe um acordo</h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ url_for('add_settlement') }}">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="payer_id" class="form-label">Who Paid</label>
+                        <label for="payer_id" class="form-label">Quem pagou</label>
                         <select class="form-select bg-dark text-light" id="payer_id" name="payer_id" required>
-                            <option value="">Select person who paid</option>
+                            <option value="">Selecione a pessoa que pagou</option>
                             {% for user in users %}
                                 <option value="{{ user.id }}">{{ user.name }} ({{ user.id }})</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="receiver_id" class="form-label">Who Received</label>
+                        <label for="receiver_id" class="form-label">Quem recebeu</label>
                         <select class="form-select bg-dark text-light" id="receiver_id" name="receiver_id" required>
-                            <option value="">Select person who received</option>
+                            <option value="">Selecione a pessoa que recebeu</option>
                             {% for user in users %}
                                 <option value="{{ user.id }}">{{ user.name }} ({{ user.id }})</option>
                             {% endfor %}
@@ -101,20 +101,20 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label for="amount" class="form-label">Amount ({{ base_currency.symbol }})</label>
+                        <label for="amount" class="form-label">Montante ({{ base_currency.symbol }})</label>
                         <input type="number" step="0.01" class="form-control bg-dark text-light" id="amount" name="amount" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="date" class="form-label">Date</label>
+                        <label for="date" class="form-label">Data</label>
                         <input type="date" class="form-control bg-dark text-light" id="date" name="date" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label for="description" class="form-label">Description (Optional)</label>
+                        <label for="description" class="form-label">Descrição (Opcional)</label>
                         <input type="text" class="form-control bg-dark text-light" id="description" name="description" placeholder="e.g., Venmo payment">
                     </div>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-primary">Record Settlement</button>
+                    <button type="submit" class="btn btn-primary">Liquidação de Registos</button>
                 </div>
             </form>
         </div>
@@ -123,18 +123,18 @@
     <!-- Recent Settlements -->
     <div class="card">
         <div class="card-header">
-            <h5 class="mb-0">Recent Settlements</h5>
+            <h5 class="mb-0">Liquidações Recentes</h5>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>From</th>
-                            <th>To</th>
-                            <th>Amount</th>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>De</th>
+                            <th>Para</th>
+                            <th>Montante</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -162,7 +162,7 @@
                             {% endfor %}
                         {% else %}
                             <tr>
-                                <td colspan="5" class="text-center">No settlements yet</td>
+                                <td colspan="5" class="text-center">Ainda não há liquidações</td>
                             </tr>
                         {% endif %}
                     </tbody>
