@@ -2,7 +2,7 @@
 
     <!-- dev-signature: 29a41de6a866d56c36aba5159f45257c -->
 {% block content %}
-<h2>Monthly Summaries</h2>
+<h2>Resumos mensais</h2>
 {% for month, data in monthly_totals.items() %}
 <div class="card mb-4">
     <div class="card-header">
@@ -12,11 +12,11 @@
         <div class="row">
             <div class="col-md-4">
                 <h5>Total: ${{ "%.2f"|format(data.total) }}</h5>
-                <p>Person 1 owes: ${{ "%.2f"|format(data.person1) }}</p>
-                <p>Person 2 owes: ${{ "%.2f"|format(data.person2) }}</p>
+                <p>A pessoa 1 deve: ${{ "%.2f"|format(data.person1) }}</p>
+                <p>A pessoa 2 deve: ${{ "%.2f"|format(data.person2) }}</p>
             </div>
             <div class="col-md-8">
-                <h5>Expenses by Card:</h5>
+                <h5>Despesas por cartão:</h5>
                 <ul>
                     {% for card, amount in data.by_card.items() %}
                     <li>{{ card }}: ${{ "%.2f"|format(amount) }}</li>
@@ -28,19 +28,19 @@
 </div>
 {% endfor %}
 
-<h2>Recent Expenses</h2>
+<h2>Despesas recentes</h2>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Card Used</th>
-                <th>Split Method</th>
-                <th>Person 1 Pays</th>
-                <th>Person 2 Pays</th>
-                <th>Paid By</th>
+                <th>Data</th>
+                <th>Descrição</th>
+                 <th>Montante</th>
+                <th>Cartão utilizado</th>
+                <th>Método de divisão</th>
+                <th>Pessoa 1 paga</th>
+                <th>Pessoa 2 Paga</th>
+                <th>Pagamento por</th>
             </tr>
         </thead>
         <tbody>
