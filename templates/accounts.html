@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="mb-4">Accounts</h1>
+    <h1 class="mb-4">Contas</h1>
     
     <!-- Account Balance Summary -->
     {% if current_user.accounts %}
     <div class="card mt-4">
         <div class="card-header">
-            <h5 class="mb-0">Account Balance Summary</h5>
+            <h5 class="mb-0">Resumo do saldo da conta</h5>
         </div>
         <div class="card-body">
             <div class="row">
@@ -18,19 +18,19 @@
                 <div class="col-md-4">
                     <div class="list-group">
                         <div class="list-group-item bg-dark border-secondary d-flex justify-content-between">
-                            <strong>Total Assets:</strong>
+                            <strong>Total de ativos:</strong>
                             <span class="text-success">
                                 {{ base_currency.symbol }}{{ "%.2f"|format(total_assets) }}
                             </span>
                         </div>
                         <div class="list-group-item bg-dark border-secondary d-flex justify-content-between">
-                            <strong>Total Liabilities:</strong>
+                            <strong>Total do Passivo:</strong>
                             <span class="text-danger">
                                 {{ base_currency.symbol }}{{ "%.2f"|format(total_liabilities) }}
                             </span>
                         </div>
                         <div class="list-group-item bg-dark border-secondary d-flex justify-content-between">
-                            <strong>Net Worth:</strong>
+                            <strong>Patrimônio líquido:</strong>
                             <span class="{% if net_worth >= 0 %}text-success{% else %}text-danger{% endif %}">
                                 {{ base_currency.symbol }}{{ "%.2f"|format(net_worth) }}
                             </span>
@@ -45,9 +45,9 @@
 
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Your Accounts</h5>
+            <h5 class="mb-0">As suas contas</h5>
             <button id="toggleAccountForm" class="btn btn-sm btn-primary">
-                <i class="fas fa-plus me-1"></i>Add Account
+                <i class="fas fa-plus me-1"></i>Adicionar conta
             </button>
         </div>
         
@@ -56,30 +56,30 @@
             <div class="card-body border-bottom">
                 <form method="POST" action="{{ url_for('add_account') }}" class="row g-3">
                     <div class="col-md-6">
-                        <label for="account_name" class="form-label">Account Name</label>
+                        <label for="account_name" class="form-label">Nome da conta</label>
                         <input type="text" class="form-control bg-dark text-light" id="account_name" name="name" required placeholder="e.g., Chase Checking">
                     </div>
                     <div class="col-md-6">
-                        <label for="account_type" class="form-label">Account Type</label>
+                        <label for="account_type" class="form-label">Tipo de conta</label>
                         <select class="form-select bg-dark text-light" id="account_type" name="type" required>
-                            <option value="checking">Checking</option>
-                            <option value="savings">Savings</option>
-                            <option value="credit">Credit Card</option>
-                            <option value="investment">Investment</option>
-                            <option value="loan">Loan</option>
-                            <option value="other">Other</option>
+                            <option value="checking">Verificando</option>
+                            <option value="savings">Poupança</option>
+                            <option value="credit">Cartão de crédito</option>
+                            <option value="investment">Investimento</option>
+                            <option value="loan">Empréstimo</option>
+                            <option value="other">Outro</option>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label for="institution" class="form-label">Financial Institution (Optional)</label>
+                        <label for="institution" class="form-label">Instituição Financeira (Opcional)</label>
                         <input type="text" class="form-control bg-dark text-light" id="institution" name="institution" placeholder="e.g., Chase Bank">
                     </div>
                     <div class="col-md-6">
-                        <label for="balance" class="form-label">Current Balance</label>
+                        <label for="balance" class="form-label">Saldo atual</label>
                         <input type="number" step="0.01" class="form-control bg-dark text-light" id="balance" name="balance" required placeholder="0.00">
                     </div>
                     <div class="col-12">
-                        <label for="currency_code" class="form-label">Currency</label>
+                        <label for="currency_code" class="form-label">Moeda</label>
                         <select class="form-select bg-dark text-light" id="currency_code" name="currency_code">
                             {% for currency in currencies %}
                                 <option value="{{ currency.code }}" 
@@ -91,10 +91,10 @@
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <button type="button" class="btn btn-secondary me-2" id="cancelAccountForm">
-                            <i class="fas fa-times me-1"></i>Cancel
+                            <i class="fas fa-times me-1"></i>Cancelar
                         </button>
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-plus me-1"></i>Add Account
+                            <i class="fas fa-plus me-1"></i>Adicionar conta
                         </button>
                     </div>
                 </form>
@@ -107,13 +107,13 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Type</th>
-                                <th>Institution</th>
-                                <th>Balance</th>
-                                <th>Currency</th>
-                                <th>Last Sync</th>
-                                <th>Actions</th>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Instituição</th>
+                                <th>Equilíbrio</th>
+                                <th>Moeda</th>
+                                <th>Última sincronização</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -165,36 +165,36 @@
                                         <input type="hidden" name="account_id" value="{{ account.id }}">
                                         <div class="row g-3">
                                             <div class="col-md-6">
-                                                <label for="edit_name_{{ account.id }}" class="form-label">Account Name</label>
+                                                <label for="edit_name_{{ account.id }}" class="form-label">Nome da conta</label>
                                                 <input type="text" class="form-control bg-dark text-light" id="edit_name_{{ account.id }}" name="name" 
                                                     value="{{ account.name }}" required>
                                                 {% if account.import_source == 'simplefin' %}
-                                                <small class="text-muted">Changing the name won't affect syncing with your bank.</small>
+                                                <small class="text-muted">Alterar o nome não afetará a sincronização com o seu banco.</small>
                                                 {% endif %}
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="edit_type_{{ account.id }}" class="form-label">Account Type</label>
+                                                <label for="edit_type_{{ account.id }}" class="form-label">Tipo de conta</label>
                                                 <select class="form-select bg-dark text-light" id="edit_type_{{ account.id }}" name="type" required>
-                                                    <option value="checking" {% if account.type == 'checking' %}selected{% endif %}>Checking</option>
-                                                    <option value="savings" {% if account.type == 'savings' %}selected{% endif %}>Savings</option>
-                                                    <option value="credit" {% if account.type == 'credit' %}selected{% endif %}>Credit Card</option>
-                                                    <option value="investment" {% if account.type == 'investment' %}selected{% endif %}>Investment</option>
-                                                    <option value="loan" {% if account.type == 'loan' %}selected{% endif %}>Loan</option>
-                                                    <option value="other" {% if account.type == 'other' %}selected{% endif %}>Other</option>
+                                                    <option value="checking" {% if account.type == 'checking' %}selected{% endif %}>Verificando</option>
+                                                    <option value="savings" {% if account.type == 'savings' %}selected{% endif %}>Poupança</option>
+                                                    <option value="credit" {% if account.type == 'credit' %}selected{% endif %}>Cartão de crédito</option>
+                                                    <option value="investment" {% if account.type == 'investment' %}selected{% endif %}>Investimento</option>
+                                                    <option value="loan" {% if account.type == 'loan' %}selected{% endif %}>Empréstimo</option>
+                                                    <option value="other" {% if account.type == 'other' %}selected{% endif %}>Outro</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="edit_institution_{{ account.id }}" class="form-label">Financial Institution (Optional)</label>
+                                                <label for="edit_institution_{{ account.id }}" class="form-label">Instituição Financeira (Opcional)</label>
                                                 <input type="text" class="form-control bg-dark text-light" id="edit_institution_{{ account.id }}" 
                                                     name="institution" value="{{ account.institution or '' }}">
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="edit_balance_{{ account.id }}" class="form-label">Current Balance</label>
+                                                <label for="edit_balance_{{ account.id }}" class="form-label">Saldo atual</label>
                                                 <input type="number" step="0.01" class="form-control bg-dark text-light" id="edit_balance_{{ account.id }}" 
                                                     name="balance" value="{{ account.balance }}" required>
                                             </div>
                                             <div class="col-12">
-                                                <label for="edit_currency_{{ account.id }}" class="form-label">Currency</label>
+                                                <label for="edit_currency_{{ account.id }}" class="form-label">Moeda</label>
                                                 <select class="form-select bg-dark text-light" id="edit_currency_{{ account.id }}" name="currency_code">
                                                     {% for currency in currencies %}
                                                         <option value="{{ currency.code }}" 
@@ -206,10 +206,10 @@
                                             </div>
                                             <div class="col-12 d-flex justify-content-end mt-3">
                                                 <button type="button" class="btn btn-secondary me-2" onclick="toggleEditForm({{ account.id }})">
-                                                    <i class="fas fa-times me-1"></i>Cancel
+                                                    <i class="fas fa-times me-1"></i>Cancelar
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="fas fa-save me-1"></i>Save Changes
+                                                    <i class="fas fa-save me-1"></i>Guardar alterações
                                                 </button>
                                             </div>
                                         </div>
@@ -223,9 +223,9 @@
             {% else %}
             <div class="text-center py-4">
                 <i class="fas fa-university fa-3x mb-3 text-muted"></i>
-                <p>You don't have any accounts added yet.</p>
+                <p>Ainda não adicionou nenhuma conta.</p>
                 <button id="noAccountsAddButton" class="btn btn-primary">
-                    <i class="fas fa-plus me-1"></i>Add Your First Account
+                    <i class="fas fa-plus me-1"></i>Adicione a sua primeira conta
                 </button>
             </div>
             {% endif %}
