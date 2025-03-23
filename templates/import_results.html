@@ -3,32 +3,32 @@
 {% block content %}
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Import Results</h1>
+        <h1>Importar resultados</h1>
         <a href="{{ url_for('advanced') }}" class="btn btn-primary">
-            <i class="fas fa-arrow-left me-2"></i>Back to Advanced
+            <i class="fas fa-arrow-left me-2"></i>Voltar para Avançado
         </a>
     </div>
     
     <div class="alert alert-success">
         <i class="fas fa-check-circle me-2"></i>
-        Successfully imported {{ count }} transactions. Skipped {{ duplicate_count }} duplicates.
+        Transacções importadas com sucesso {{ count }}. Ignorou {{ duplicate_count }} duplicados.
     </div>
     
     {% if count > 0 %}
     <div class="card mb-4">
         <div class="card-header">
-            <h5 class="mb-0">Imported Transactions</h5>
+            <h5 class="mb-0">Transações importadas</h5>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-striped mb-0">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Description</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Card Used</th>
+                            <th>Data</th>
+                            <th>Descrição</th>
+                            <th>Montante</th>
+                            <th>Categoria</th>
+                            <th>Cartão utilizado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                                     <i class="fas {{ expense.category.icon }}"></i> {{ expense.category.name }}
                                 </span>
                                 {% else %}
-                                <span class="text-muted">Uncategorized</span>
+                                <span class="text-muted">Sem categoria</span>
                                 {% endif %}
                             </td>
                             <td>{{ expense.card_used }}</td>
@@ -58,10 +58,10 @@
     
     <div class="d-flex justify-content-center">
         <a href="{{ url_for('transactions') }}" class="btn btn-primary me-2">
-            <i class="fas fa-list me-1"></i>View All Transactions
+            <i class="fas fa-list me-1"></i>Ver todas as transacções
         </a>
         <a href="{{ url_for('advanced') }}" class="btn btn-outline-secondary">
-            <i class="fas fa-upload me-1"></i>Import Another File
+            <i class="fas fa-upload me-1"></i>Importar outro ficheiro
         </a>
     </div>
 </div>
