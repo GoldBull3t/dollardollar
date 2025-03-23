@@ -6,9 +6,9 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="d-flex justify-content-between align-items-center">
-                <h2>My Groups</h2>
+                <h2>Os meus grupos</h2>
                 <button id="toggleGroupForm" class="btn btn-primary">
-                    <i class="fas fa-plus me-2"></i>Create Group
+                    <i class="fas fa-plus me-2"></i>Criar grupo
                 </button>
             </div>
         </div>
@@ -16,18 +16,18 @@
     
     <!-- Create Group Form (Hidden by default) -->
     <div id="groupFormContainer" class="expense-form mb-4" style="display: none;">
-        <h4 class="mb-3">Create New Group</h4>
+        <h4 class="mb-3">Criar novo grupo</h4>
         <form action="{{ url_for('create_group') }}" method="POST">
             <div class="mb-3">
-                <label for="name" class="form-label">Group Name</label>
+                <label for="name" class="form-label">Nome do grupo</label>
                 <input type="text" class="form-control bg-dark text-light" id="name" name="name" required>
             </div>
             <div class="mb-3">
-                <label for="description" class="form-label">Description (Optional)</label>
+                <label for="description" class="form-label">Descrição (opcional)</label>
                 <textarea class="form-control bg-dark text-light" id="description" name="description" rows="3"></textarea>
             </div>
             <div class="mb-3">
-                <label class="form-label">Add Members</label>
+                <label class="form-label">Adicionar membros</label>
                 <select class="form-select bg-dark text-light" name="members" multiple>
                     {% for user in users %}
                         {% if user != current_user %}
@@ -35,11 +35,11 @@
                         {% endif %}
                     {% endfor %}
                 </select>
-                <small class="text-muted">Hold Ctrl/Cmd to select multiple members</small>
+                <small class="text-muted">Mantenha premida a tecla Ctrl/Cmd para selecionar vários membros</small>
             </div>
             <div class="d-flex justify-content-end">
-                <button type="button" class="btn btn-secondary me-2" onclick="toggleGroupForm()">Cancel</button>
-                <button type="submit" class="btn btn-primary">Create Group</button>
+                <button type="button" class="btn btn-secondary me-2" onclick="toggleGroupForm()">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Criar grupo</button>
             </div>
         </form>
     </div>
@@ -57,13 +57,13 @@
                     <p class="card-text">{{ group.description }}</p>
                     {% endif %}
                     <p class="text-muted">
-                        <small>Created by: {{ group.creator.name }}</small><br>
-                        <small>Members: {{ group.members|length }}</small>
+                        <small>Criado por: {{ group.creator.name }}</small><br>
+                        <small>Membros: {{ group.members|length }}</small>
                     </p>
                 </div>
                 <div class="card-footer bg-dark border-secondary">
                     <a href="{{ url_for('group_details', group_id=group.id) }}" class="btn btn-primary btn-sm">
-                        View Details
+                        Ver detalhes
                     </a>
                 </div>
             </div>
@@ -71,7 +71,7 @@
         {% else %}
         <div class="col-12">
             <div class="alert alert-info">
-                You haven't joined any groups yet. Create one to get started!
+                Ainda não aderiu a nenhum grupo. Crie um para começar!
             </div>
         </div>
         {% endfor %}
